@@ -1,0 +1,31 @@
+export class Slug {
+    public value: string;
+
+    constructor(value: string) {
+        this.value = value;
+    }
+
+    /**
+     * Receives a string and returns a slugified version of it.
+     * Example: "a title example" => "a-title-example"
+     * @param text {string}
+     */
+    static createFromText(text: string) {
+        const slugText = text
+            .normalize("NFKD")
+            .toLowerCase()
+            .trim()
+            // \s+ white spaces
+            // g global (get all matches)
+            .replace(/\s+/g, '-')
+            // \w words
+            // ^ before is not a word
+            .replace(/[^\w-]+/g, '-')
+            .replace(/_/g, '-')
+            .replace(/--+/g, '-')
+            // $ end of string
+            .replace(/-$/g, '');
+
+        return new Slug(slugText);
+    }
+}
