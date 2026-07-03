@@ -1,0 +1,27 @@
+{
+  "name": "04-domain-driven-design",
+  "version": "1.0.0",
+  "description": "The code from 4th module of node.js course from rocketseat",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andressalessa/04-domain-driven-design.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andressalessa/04-domain-driven-design/issues"
+  },
+  "homepage": "https://github.com/andressalessa/04-domain-driven-design#readme",
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  }
+}
