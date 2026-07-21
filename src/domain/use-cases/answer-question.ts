@@ -1,4 +1,4 @@
-import { UniqueEntityID } from "../../core/entities/unique-entity-id.js";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id.js";
 import { Answer } from "../entities/answer.js";
 import type { AnswersRepository } from "../repositories/answer-repository.js";
 
