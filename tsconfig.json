@@ -14,7 +14,8 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node", "vitest/globals"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "test/*": ["./test/*"]
     },
     // For nodejs:
     // "lib": ["esnext"],

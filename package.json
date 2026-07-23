@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/andressalessa/04-domain-driven-design#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^26.1.0",
     "eslint": "^8.57.1",
