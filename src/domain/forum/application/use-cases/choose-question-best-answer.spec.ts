@@ -4,6 +4,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questio
 import { makeQuestion } from "test/factories/make-question.js";
 import { makeAnswer } from "test/factories/make-answer.js";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id.js";
+import { NotAllowedError } from "./errors/not-allowerd-error.js";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
@@ -44,11 +45,12 @@ describe('Answer Question', () => {
         await inMemoryQuestionsRepository.create(question);
         await inMemoryAnswersRepository.create(answer);
 
-        expect(() => {
-            return chooseQuestionBestAnswer.execute({
-                authorId: new UniqueEntityID('another-author-id').toString(),
-                answerId: answer.id.toString()
-            })
-        }).rejects.toBeInstanceOf(Error);
+        const result = await chooseQuestionBestAnswer.execute({
+            authorId: new UniqueEntityID('another-author-id').toString(),
+            answerId: answer.id.toString()
+        });
+
+        expect(result.isLeft()).toBe(true);
+        expect(result.value).toBeInstanceOf(NotAllowedError);
     })
 })
