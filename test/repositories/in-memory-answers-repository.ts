@@ -1,3 +1,4 @@
+import type { PaginationParams } from "@/core/repositories/pagination-params.js";
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository.js";
 import type { Answer } from "@/domain/forum/enterprise/entities/answer.js";
 
@@ -14,8 +15,22 @@ export class InMemoryAnswersRepository implements AnswersRepository {
         return answer;
     }
 
+    async findManyByQuestionId(questionId: string, params: PaginationParams) {
+        const answers = this.items
+            .filter((item) => item.questionId.toString() == questionId)
+            .slice((params.page - 1) * 20, params.page * 20);
+
+        return answers;
+    }
+
     async create(answer: Answer) {
         this.items.push(answer);
+    }
+
+    async save(answer: Answer) {
+        const itemIndex = this.items.findIndex((item) => item.id == answer.id);
+
+        this.items[itemIndex] = answer;
     }
 
     async delete(answer: Answer) {
