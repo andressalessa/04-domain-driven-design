@@ -9,7 +9,6 @@ interface CreateQuestionUseCaseRequest {
 }
 
 interface CreateQuestionUseCaseResponse {
-    id: UniqueEntityID
     question: Question
 }
 
