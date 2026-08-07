@@ -24,7 +24,9 @@ describe('Get Question By Slug', () => {
         });
 
         expect(result.isRight()).toBe(true);
-        expect(result.value?.question.id).toBeTruthy();
-        expect(result.value?.question.title).toEqual(newQuestion.title);
+        if (result.isRight()) {
+            expect(result.value?.question.id).toBeTruthy();
+            expect(result.value?.question.title).toEqual(newQuestion.title);
+        }
     })
 })
