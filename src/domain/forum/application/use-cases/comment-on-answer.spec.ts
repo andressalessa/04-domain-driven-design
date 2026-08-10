@@ -2,14 +2,17 @@ import { CommentOnAnswerUseCase } from "./comment-on-answer.js";
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository.js";
 import { makeAnswer } from "test/factories/make-answer.js";
 import { InMemoryAnswerCommentRepository } from "test/repositories/in-memory-answer-comment-repository.js";
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answer-attachments-repository.js";
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentRepository
 let commentOnAnswer: CommentOnAnswerUseCase
 
 describe('Comment On Answer', () => {
     beforeEach(() => {
-        inMemoryAnswersRepository = new InMemoryAnswersRepository();
+        inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentRepository()
+        inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswerAttachmentsRepository);
         inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentRepository();
         commentOnAnswer = new CommentOnAnswerUseCase(inMemoryAnswersRepository, inMemoryAnswerCommentsRepository);
     });
@@ -25,6 +28,8 @@ describe('Comment On Answer', () => {
             content: 'New comment',
         });
 
-        expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual('New comment');
+        if (inMemoryAnswerCommentsRepository.items[0]) {
+            expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual('New comment');
+        }
     })
 })

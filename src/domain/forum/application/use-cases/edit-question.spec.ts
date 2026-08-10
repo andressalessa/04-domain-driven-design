@@ -12,8 +12,8 @@ let editQuestion: EditQuestionUseCase
 
 describe('Edit Question', () => {
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
         inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentRepository();
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository);
         editQuestion = new EditQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionAttachmentsRepository);
     });
 
@@ -28,10 +28,7 @@ describe('Edit Question', () => {
             makeQuestionAttachment({
                 questionId: newQuestion.id,
                 attachmentId: new UniqueEntityID('1')
-            })
-        );
-
-        inMemoryQuestionAttachmentsRepository.items.push(
+            }),
             makeQuestionAttachment({
                 questionId: newQuestion.id,
                 attachmentId: new UniqueEntityID('2')

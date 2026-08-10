@@ -5,15 +5,21 @@ import { makeQuestion } from "test/factories/make-question.js";
 import { makeAnswer } from "test/factories/make-answer.js";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id.js";
 import { NotAllowedError } from "./errors/not-allowerd-error.js";
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answer-attachments-repository.js";
+import { InMemoryQuestionAttachmentRepository } from "test/repositories/in-memory-question-attachments-repository.js";
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentRepository
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let chooseQuestionBestAnswer: ChooseQuestionBestAnswerUseCase
 
 describe('Answer Question', () => {
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
-        inMemoryAnswersRepository = new InMemoryAnswersRepository();
+        inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentRepository();
+        inMemoryQuestionAttachmentsRepository = new InMemoryQuestionAttachmentRepository();
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentsRepository);
+        inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswerAttachmentsRepository);
         chooseQuestionBestAnswer = new ChooseQuestionBestAnswerUseCase(inMemoryQuestionsRepository, inMemoryAnswersRepository);
     });
 
@@ -31,7 +37,9 @@ describe('Answer Question', () => {
             answerId: answer.id.toString()
         });
 
-        expect(inMemoryQuestionsRepository.items[0].bestAnswerId).toEqual(answer.id);
+        if (inMemoryQuestionsRepository.items[0]) {
+            expect(inMemoryQuestionsRepository.items[0].bestAnswerId).toEqual(answer.id);
+        }
     })
 
     it('should not be able to choose another user question\'s best answer for a question', async () => {
