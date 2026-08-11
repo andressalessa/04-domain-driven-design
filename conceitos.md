@@ -41,3 +41,27 @@ O correto seria:
 Para isso serve o pattern WatchedList. 
 É uma lista que irá guardar além das informações padrão da entidade, as informações para identificar o estado
 e a ação a ser executada para o item.
+
+
+## Subdomínios (pequenas partes do negócio)
+Divididos em:
+
+- Core: tudo o que envolve dinheiro
+- Supporting: tudo o que dá suporte para o core funcionar
+- Generic: necessários mas não são tão essenciais/primordiais
+
+### Exemplos
+#### Em um e-commerce
+O que seriam Core subdomínios?
+- Compra
+- Catálogo
+- Pagamento
+- Entrega
+
+O que seriam Supporting subdomínios?
+- Estoque
+
+O que seriam Generic subdomínios?
+- Notificação ao cliente
+- Promoções
+- Chat de atendimento
