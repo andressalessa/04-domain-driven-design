@@ -2,7 +2,7 @@ import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-r
 import { makeAnswer } from "test/factories/make-answer.js"
 import { EditAnswerUseCase } from "./edit-answer.js"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id.js"
-import { NotAllowedError } from "./errors/not-allowerd-error.js"
+import { NotAllowedError } from "@/core/errors/errors/not-allowerd-error.js"
 import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answer-attachments-repository.js"
 import { makeAnswerAttachment } from "test/factories/make-answer-attachment.js"
 
@@ -17,7 +17,7 @@ describe('Edit Answer', () => {
         editAnswer = new EditAnswerUseCase(inMemoryAnswersRepository, inMemoryAnswerAttachmentsRepository);
     });
 
-    it('shouw be able to edit a answer', async () => {
+    it('should be able to edit a answer', async () => {
         const newAnswer = makeAnswer({
             authorId: new UniqueEntityID('author-1')
         }, new UniqueEntityID('answer-1'));
@@ -52,7 +52,7 @@ describe('Edit Answer', () => {
         ]);
     })
 
-    it('shouw not be able to edit a answer from another user', async () => {
+    it('should not be able to edit a answer from another user', async () => {
         const newAnswer = makeAnswer({
             authorId: new UniqueEntityID('author-1')
         }, new UniqueEntityID('answer-1'));

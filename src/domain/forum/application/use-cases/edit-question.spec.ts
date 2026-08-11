@@ -2,7 +2,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questio
 import { makeQuestion } from "test/factories/make-question.js"
 import { EditQuestionUseCase } from "./edit-question.js"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id.js"
-import { NotAllowedError } from "./errors/not-allowerd-error.js"
+import { NotAllowedError } from "@/core/errors/errors/not-allowerd-error.js"
 import { InMemoryQuestionAttachmentRepository } from "test/repositories/in-memory-question-attachments-repository.js"
 import { makeQuestionAttachment } from "test/factories/make-question-attachment.js"
 
@@ -17,7 +17,7 @@ describe('Edit Question', () => {
         editQuestion = new EditQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionAttachmentsRepository);
     });
 
-    it('shouw be able to edit a question', async () => {
+    it('should be able to edit a question', async () => {
         const newQuestion = makeQuestion({
             authorId: new UniqueEntityID('author-1')
         }, new UniqueEntityID('question-1'));
@@ -55,7 +55,7 @@ describe('Edit Question', () => {
         ]);
     })
 
-    it('shouw not be able to edit a question from another user', async () => {
+    it('should not be able to edit a question from another user', async () => {
         const newQuestion = makeQuestion({
             authorId: new UniqueEntityID('author-1')
         }, new UniqueEntityID('question-1'));

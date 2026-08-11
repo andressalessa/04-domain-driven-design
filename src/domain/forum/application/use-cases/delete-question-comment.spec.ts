@@ -1,7 +1,7 @@
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment.js";
 import { InMemoryQuestionCommentRepository } from "test/repositories/in-memory-question-comment-repository.js";
 import { makeQuestionComment } from "test/factories/make-question-comment.js";
-import { NotAllowedError } from "./errors/not-allowerd-error.js";
+import { NotAllowedError } from "@/core/errors/errors/not-allowerd-error.js";
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentRepository
 let deleteQuestionComment: DeleteQuestionCommentUseCase
@@ -25,7 +25,7 @@ describe('Delete Question Comment', () => {
         expect(inMemoryQuestionCommentsRepository.items).toHaveLength(0);
     })
 
-    it('shouw not be able to delete a comment question from another user', async () => {
+    it('should not be able to delete a comment question from another user', async () => {
         const questionComment = makeQuestionComment();
 
         await inMemoryQuestionCommentsRepository.create(questionComment);

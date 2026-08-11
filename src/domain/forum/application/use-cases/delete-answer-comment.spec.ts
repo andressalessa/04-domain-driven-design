@@ -1,7 +1,7 @@
 import { DeleteAnswerCommentUseCase } from "./delete-answer-comment.js";
 import { InMemoryAnswerCommentRepository } from "test/repositories/in-memory-answer-comment-repository.js";
 import { makeAnswerComment } from "test/factories/make-answer-comment.js";
-import { NotAllowedError } from "./errors/not-allowerd-error.js";
+import { NotAllowedError } from "@/core/errors/errors/not-allowerd-error.js";
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentRepository
 let deleteAnswerComment: DeleteAnswerCommentUseCase
@@ -25,7 +25,7 @@ describe('Delete Answer Comment', () => {
         expect(inMemoryAnswerCommentsRepository.items).toHaveLength(0);
     })
 
-    it('shouw not be able to delete a comment answer from another user', async () => {
+    it('should not be able to delete a comment answer from another user', async () => {
         const answerComment = makeAnswerComment();
 
         await inMemoryAnswerCommentsRepository.create(answerComment);

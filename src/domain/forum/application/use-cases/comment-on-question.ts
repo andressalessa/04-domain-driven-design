@@ -3,7 +3,7 @@ import type { QuestionsRepository } from '../repositories/questions-repository.j
 import { QuestionComment } from '../../enterprise/entities/question-comment.js'
 import type { QuestionCommentsRepository } from '../repositories/question-comments-repository.js'
 import { left, right, type Either } from '@/core/either.js'
-import { ResourceNotFoundError } from './errors/resource-not-found-error.js'
+import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-error.js'
 
 interface CommentOnQuestionUseCaseRequest {
     authorId: string

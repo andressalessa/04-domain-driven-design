@@ -14,7 +14,7 @@ describe('Create Question', () => {
         createQuestion = new CreateQuestionUseCase(inMemoryQuestionsRepository);
     });
 
-    it('shouw be able to create an question', async () => {
+    it('should be able to create an question', async () => {
         const result = await createQuestion.execute({
             authorId: '1',
             title: 'Nova pergunta',

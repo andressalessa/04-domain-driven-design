@@ -3,7 +3,7 @@ import type { AnswersRepository } from '../repositories/answers-repository.js'
 import { AnswerComment } from '../../enterprise/entities/answer-comment.js'
 import type { AnswerCommentsRepository } from '../repositories/answer-comments-repository.js'
 import { left, right, type Either } from '@/core/either.js'
-import { NotAllowedError } from './errors/not-allowerd-error.js'
+import { NotAllowedError } from '@/core/errors/errors/not-allowerd-error.js'
 
 interface CommentOnAnswerUseCaseRequest {
     authorId: string

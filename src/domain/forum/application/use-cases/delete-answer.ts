@@ -1,7 +1,7 @@
 import { left, right, type Either } from "@/core/either.js";
 import type { AnswersRepository } from "../repositories/answers-repository.js"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error.js";
-import { NotAllowedError } from "./errors/not-allowerd-error.js";
+import { ResourceNotFoundError } from "@/core/errors/errors/resource-not-found-error.js";
+import { NotAllowedError } from "@/core/errors/errors/not-allowerd-error.js";
 
 interface DeleteAnswerUseCaseRequest {
   authorId: string
